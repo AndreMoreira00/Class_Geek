@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+<p class="card-text"><%= @teewt.created_at.strftime("%d/%m/%Y - %H:%M") %></p>
+<% if @teewt.photo? %>
+  <%= image_tag (@teewt.photo), class:"card-img-top mx-auto", style:"width: 20%;" %>
+<% end %>
+<%= render @teewt %>
+
+<div>
+  <%= link_to "Back to teewts", teewts_path %>
+  <% if current_user == @teewt.user %>
+    <%= link_to "Edit this teewt", edit_teewt_path(@teewt) %> 
+    <%= button_to "Destroy this teewt", @teewt, method: :delete %>
+  <% end %>
+</div>

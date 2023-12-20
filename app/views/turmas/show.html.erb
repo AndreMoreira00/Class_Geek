@@ -1,0 +1,40 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="row">
+  <div class="col-4 ps-5">
+    <div class="card" style="width: 18rem;">
+    <% if @turma.image? %>
+      <%= image_tag (@turma.image), style:"width: 100%;", class:"card-img-top" %>
+    <% end %>
+    <div class="card-body>
+      <h5 class="card-title"><%= @turma.nome %></h5>
+      <p class="card-text"><b>Inicio: </b><%= @turma.inicio %></p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div> 
+    </div>
+  </div>
+
+  <div class="col-8 pe-5">
+    <div class="card">
+      <div class="card-body">
+        <% @turma.users.each do |aluno| %>
+          <div class="card">
+            <div class="card-body">
+              <b>Nome: </b><%= aluno.email %>
+              <b>Username: </b><%= aluno.username %> 
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render @turma %>
+
+<div>
+  <%= link_to "Edit this turma", edit_turma_path(@turma) %> |
+  <%= link_to "Back to turmas", turmas_path %>
+
+  <%= button_to "Destroy this turma", @turma, method: :delete %>
+</div>

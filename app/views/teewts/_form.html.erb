@@ -1,0 +1,24 @@
+<%= form_with(model: teewt) do |form| %>
+  <% if teewt.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(teewt.errors.count, "error") %> prohibited this teewt from being saved:</h2>
+
+      <ul>
+        <% teewt.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label :photo, "Imagem" %>
+    <%= form.file_field :photo %>
+    <%= form.label :conteudo, style: "display: block" %>
+    <%= form.text_area :conteudo, class:"form-control" %>
+  </div>
+
+  <%= form.submit "Enviar", class:"btn btn-primary" %>
+
+<% end %>

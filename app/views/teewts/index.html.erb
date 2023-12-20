@@ -1,0 +1,37 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Teewts</h1>
+
+<div class="row">
+  <div class="col-4">
+    <div class="card" style="width: 18rem;">
+      # <%= gravatar_image_tag('andrefernandes102030@outlook.com.br'.gsub('spam', 'mdeering'), :alt => 'Arno', style:"width: 17rem; height: 17rem; margin: 0.3rem;") %>
+      <%= gravatar_image_tag(current_user.email.gsub('spam', 'mdeering'), :alt => 'Arno', style:"width: 17rem; height: 17rem; margin: 0.3rem;") %>
+      <div class="card-body">
+        <h5 class="card-title">Nome do usuario</h5>
+        <p class="card-text"><%= current_user.email %></p>
+        <%= link_to "Ver perfil", edit_user_registration_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-8">
+    <center><%= link_to "New Tweet", new_teewt_path %></center>
+    <ul class="list-group">
+
+    <% @teewts.each do |teewts| %>
+      <%= link_to teewts, class:"list-group-item list-group-item-action" do %>
+        <h4 class="card-title">Dono do Tweet</h4>
+        <h6 class="card-subtitle mb-2 text-muted"> <%= teewts.user.email %></h6>
+        <p class="card-text"> <%= teewts.conteudo %></p>
+        <% if teewts.photo? %>
+          <%= image_tag (teewts.photo), class:"card-img-top mx-auto", style:"width: 20%;" %>
+        <% end %>
+        <p class="card-text"><%= teewts.created_at.strftime("%d/%m/%Y - %H:%M") %></p>
+      <% end %>
+    <% end %>
+
+    </ul>
+  </div>
+</div>
+
+<%= link_to "New teewt", new_teewt_path %>
